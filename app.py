@@ -22,31 +22,31 @@ st.sidebar.title("CoreAI Solutions")
 st.sidebar.caption("Next-Gen Conversational Automation")
 
 # --- MAIN HERO LAYOUT ---
-st.markdown("<div class='main-title'>⚡ COREAI SOLUTIONS</div>", unsafe_style_html=True)
-st.markdown("<div class='sub-title'>We engineer autonomous conversational agents that manage customer communication and capture business leads 24/7.</div>", unsafe_style_html=True)
+st.markdown("<div class='main-title'>⚡ COREAI SOLUTIONS</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-title'>We engineer autonomous conversational agents that manage customer communication and capture business leads 24/7.</div>", unsafe_allow_html=True)
 
 st.image("https://unsplash.com", caption="CoreAI Global Enterprise Networks", use_container_width=True)
 
-st.markdown("<div class='section-bar'>Our Enterprise Capabilities</div>", unsafe_style_html=True)
+st.markdown("<div class='section-bar'>Our Enterprise Capabilities</div>", unsafe_allow_html=True)
 
 col1, col2, col3 = st.columns(3)
 with col1:
     st.markdown("""<div class='feature-box'>
     <h3>💬 Intelligent FAQ Systems</h3>
     <p>Instantly answers repetitive client queries regarding pricing metrics, operating schedules, warranties, and locations.</p>
-    </div>""", unsafe_style_html=True)
+    </div>""", unsafe_allow_html=True)
 with col2:
     st.markdown("""<div class='feature-box'>
     <h3>📈 Predictive Lead Generation</h3>
     <p>Automatically isolates booking intents from chat patterns to capture customer contact parameters with precision.</p>
-    </div>""", unsafe_style_html=True)
+    </div>""", unsafe_allow_html=True)
 with col3:
     st.markdown("""<div class='feature-box'>
     <h3>💸 Optimized Infrastructure</h3>
     <p>Built directly over cloud-native free tier structures, completely eliminating monthly server maintenance bills.</p>
-    </div>""", unsafe_style_html=True)
+    </div>""", unsafe_allow_html=True)
 
-st.markdown("<div class='section-bar'>Why Work With Our Agency?</div>", unsafe_style_html=True)
+st.markdown("<div class='section-bar'>Why Work With Our Agency?</div>", unsafe_allow_html=True)
 st.write(
     "CoreAI Solutions builds custom conversational brains tailored to your specific industry constraints. "
     "We replace slow web forms with active, real-time sales pipelines that interact with visitors in a human voice. "
