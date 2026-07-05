@@ -1,67 +1,54 @@
 import streamlit as st
-from google import genai
-from google.genai import types
 
-st.title("🚀 Free Automated Customer Support Bot")
-st.write("Powered by Google Gemini — 100% Free Tier!")
+# Setup page layout
+st.set_page_config(page_title="CoreAI Solutions | Corporate", layout="wide", initial_sidebar_state="expanded")
 
-# AUTOMATIC SECRET KEY CHECK
-# Reads the key silently from cloud secrets so users never see it!
-if "GEMINI_API_KEY" in st.secrets:
-    api_key = st.secrets["GEMINI_API_KEY"]
-else:
-    api_key = st.sidebar.text_input("Enter Google Gemini API Key", type="password")
+# --- BRANDING BLOCK ---
+st.markdown("""
+    <style>
+    .main-title { font-size: 46px; font-weight: bold; color: #1A365D; margin-bottom: 2px; }
+    .sub-title { font-size: 22px; color: #4A5568; margin-bottom: 25px; }
+    .feature-box { padding: 25px; border-radius: 12px; background-color: #F7FAFC; border-left: 6px solid #2B6CB0; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    .section-bar { font-size: 26px; font-weight: bold; color: #2B6CB0; margin-top: 35px; margin-bottom: 20px; border-bottom: 3px solid #E2E8F0; padding-bottom: 8px; }
+    </style>
+""", unsafe_style_html=True)
 
-if api_key:
-    try:
-        client = genai.Client(api_key=api_key)
+# --- SIDEBAR IDENTIFIER ---
+try:
+    st.sidebar.image("logo.png", width=180)
+except:
+    st.sidebar.image("https://icons8.com", width=80)
+st.sidebar.title("CoreAI Solutions")
+st.sidebar.caption("Next-Gen Conversational Automation")
 
-        system_instruction = (
-            "You are an expert customer service agent for TechFix Repairs. "
-            "We fix cracked phone screens for ₹4,000 and replace laptop batteries for ₹6,000. "
-            "We are open Monday to Friday from 9 AM to 6 PM. We offer a 6-month warranty. "
-            "Be extremely polite, professional. "
-            "CRITICAL RULE: Whenever a customer wants to fix a device or book an appointment, "
-            "you MUST ask for their Full Name and Phone Number."
-        )
+# --- MAIN HERO LAYOUT ---
+st.markdown("<div class='main-title'>⚡ COREAI SOLUTIONS</div>", unsafe_style_html=True)
+st.markdown("<div class='sub-title'>We engineer autonomous conversational agents that manage customer communication and capture business leads 24/7.</div>", unsafe_style_html=True)
 
-        if "messages" not in st.session_state:
-            st.session_state.messages = []
-        if "leads" not in st.session_state:
-            st.session_state.leads = []
+st.image("https://unsplash.com", caption="CoreAI Global Enterprise Networks", use_container_width=True)
 
-        for message in st.session_state.messages:
-            st.chat_message(message["role"]).write(message["content"])
+st.markdown("<div class='section-bar'>Our Enterprise Capabilities</div>", unsafe_style_html=True)
 
-        user_input = st.chat_input("Type your question here...")
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown("""<div class='feature-box'>
+    <h3>💬 Intelligent FAQ Systems</h3>
+    <p>Instantly answers repetitive client queries regarding pricing metrics, operating schedules, warranties, and locations.</p>
+    </div>""", unsafe_style_html=True)
+with col2:
+    st.markdown("""<div class='feature-box'>
+    <h3>📈 Predictive Lead Generation</h3>
+    <p>Automatically isolates booking intents from chat patterns to capture customer contact parameters with precision.</p>
+    </div>""", unsafe_style_html=True)
+with col3:
+    st.markdown("""<div class='feature-box'>
+    <h3>💸 Optimized Infrastructure</h3>
+    <p>Built directly over cloud-native free tier structures, completely eliminating monthly server maintenance bills.</p>
+    </div>""", unsafe_style_html=True)
 
-        if user_input:
-            st.chat_message("user").write(user_input)
-            st.session_state.messages.append({"role": "user", "content": user_input})
-            
-            response = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=user_input,
-                config=types.GenerateContentConfig(
-                    system_instruction=system_instruction,
-                ),
-            )
-            ai_reply = response.text
-            
-            st.chat_message("assistant").write(ai_reply)
-            st.session_state.messages.append({"role": "assistant", "content": ai_reply})
-
-    except Exception as e:
-        st.error(f"❌ Connection Error: Details: {e}")
-
-    # SIDEBAR FEATURE: Display collected leads for the owner
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("📥 Collected Business Leads")
-    
-    if st.session_state.leads:
-        for idx, lead in enumerate(st.session_state.leads, 1):
-            st.sidebar.info(f"**Lead #{idx}:** {lead['name']} - {lead['phone']}")
-    else:
-        st.sidebar.caption("No customer details saved yet.")
-else:
-    st.info("Please enter your Google Gemini API key or add it to Streamlit Secrets.")
+st.markdown("<div class='section-bar'>Why Work With Our Agency?</div>", unsafe_style_html=True)
+st.write(
+    "CoreAI Solutions builds custom conversational brains tailored to your specific industry constraints. "
+    "We replace slow web forms with active, real-time sales pipelines that interact with visitors in a human voice. "
+    "Use the sidebar menu to navigate to our live interactive showrooms and test our automated engines."
+)
