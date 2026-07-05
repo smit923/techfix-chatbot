@@ -1,98 +1,153 @@
 import streamlit as st
-from google import genai
-from google.genai import types
 
-st.set_page_config(page_title="CoreAI Solutions | Live Demos", layout="wide")
+# Force wide page layout structure for an enterprise dashboard experience
+st.set_page_config(page_title="CoreAI Solutions | Autonomous Enterprise Systems", layout="wide", initial_sidebar_state="expanded")
 
-st.markdown("# 🛠️ Interactive AI Showroom")
-st.markdown("### Select an industry below to test our custom virtual business assistants in real time.")
-st.write("---")
+# --- HIGH-END DIGITAL BRAND ARCHITECTURE & KEYFRAME ANIMATIONS ---
+st.markdown("""
+    <style>
+    /* Inject Space Grotesk engineering font */
+    @import url('https://googleapis.com');
+    * { font-family: 'Space Grotesk', sans-serif; }
 
-if "GEMINI_API_KEY" in st.secrets:
-    api_key = st.secrets["GEMINI_API_KEY"]
-else:
-    api_key = st.sidebar.text_input("Developer Authentication Key", type="password")
+    /* Keyframe Animations for Fluid Screen Loading */
+    @keyframes slideUpFade {
+        0% { opacity: 0; transform: translateY(40px); filter: blur(4px); }
+        100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-if api_key:
-    try:
-        client = genai.Client(api_key=api_key)
+    /* Container System for Animated Viewport Entry */
+    .animated-viewport {
+        animation: slideUpFade 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
 
-        bot_mode = st.selectbox(
-            "Choose a business assistant to chat with:",
-            ["Best Western Plus (Ardmore, Oklahoma USA)", "Grand Plaza Hotel (USA Hospitality)", "TechFix Repairs (Mobile/Laptop Hub)", "Elite Fitness Gym Center", "Sparkle Dental Care Clinic"]
-        )
+    /* Premium Metallic Shimmer Corporate Title Text */
+    .enterprise-title { 
+        font-size: 56px; 
+        font-weight: 700; 
+        letter-spacing: -1.5px;
+        background: linear-gradient(-45deg, #0f172a, #2563eb, #1d4ed8, #3b82f6);
+        background-size: 300% 300%;
+        animation: gradientShift 8s ease infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 5px; 
+    }
+    
+    .enterprise-subtitle { 
+        font-size: 24px; 
+        font-weight: 300;
+        color: #475569; 
+        margin-bottom: 35px; 
+        line-height: 1.5;
+    }
 
-        if bot_mode == "Best Western Plus (Ardmore, Oklahoma USA)":
-            system_instruction = (
-                "You are an expert, elite virtual front desk concierge for the Best Western Plus Ardmore Inn & Suites in Oklahoma, USA. "
-                "We provide clean, comfortable rooms, free high-speed Wi-Fi, free hot breakfast, a modern fitness center, and a beautiful indoor pool with a hot tub. "
-                "Check-in time is exactly 3:00 PM and check-out time is 12:00 PM. We are a 100% smoke-free and pet-free property. "
-                "Always maintain an incredibly polite, welcoming, helpful, and highly professional American hospitality tone. "
-                "CRITICAL RULE: Whenever a guest wants to book a room, check room availability, or plan a stay, "
-                "you MUST politely ask for their Full Name, Phone Number, and Email Address to process their reservation log."
-            )
-        elif bot_mode == "Grand Plaza Hotel (USA Hospitality)":
-            system_instruction = (
-                "You are an expert, world-class virtual concierge for The Grand Plaza Hotel in Miami, USA. "
-                "Standard rooms start at $149 per night, and luxury suites are $299 per night. Check-in is 3 PM, check-out is 11 AM. "
-                "Always sound extremely welcoming, helpful, and high-end. "
-                "CRITICAL RULE: Whenever a guest asks to book a room or check availability, "
-                "you MUST ask for their Full Name, Phone Number, and Email Address to lock in their reservation details."
-            )
-        elif bot_mode == "TechFix Repairs (Mobile/Laptop Hub)":
-            system_instruction = (
-                "You are an expert customer service agent for TechFix Repairs store. "
-                "We fix cracked phone screens for ₹4,000 and replace laptop batteries for ₹6,000. Open Mon-Fri 9AM-6PM. "
-                "Be extremely polite and professional. "
-                "CRITICAL RULE: Whenever a customer wants to fix a device or book a slot, "
-                "you MUST ask for their Full Name and Phone Number."
-            )
-        elif bot_mode == "Elite Fitness Gym Center":
-            system_instruction = (
-                "You are an expert sales representative for Elite Fitness Gym. "
-                "Our monthly membership costs ₹1,500. Open 24/7. "
-                "Be highly motivating, encouraging, and friendly. "
-                "CRITICAL RULE: Whenever a user asks about joining or membership trials, "
-                "you MUST ask for their Full Name and Phone Number to secure their free trial pass."
-            )
-        elif bot_mode == "Sparkle Dental Care Clinic":
-            system_instruction = (
-                "You are a professional medical receptionist for Sparkle Dental Care clinic. "
-                "A standard checkup costs ₹800. Open Mon-Sat 10 AM to 8 PM. "
-                "Be calm, reassuring, and highly structured. "
-                "CRITICAL RULE: Whenever a patient wants to schedule a checkup or book a slot, "
-                "you MUST ask for their Full Name and Phone Number to look up open dental slots."
-            )
+    /* High-Definition Cybernetic Glassmorphic Grid Cards */
+    .cyber-card {
+        padding: 35px 25px;
+        border-radius: 20px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+        border: 1px solid rgba(37, 99, 235, 0.15);
+        box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04);
+        margin-bottom: 25px;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* Smooth Interactive Transform Hook: Elevate, Shadow Glow, Accent Highlight */
+    .cyber-card:hover {
+        transform: translateY(-10px) scale(1.01);
+        box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.18);
+        border: 1px solid rgba(37, 99, 235, 0.6);
+    }
 
-        if "current_bot" not in st.session_state or st.session_state.current_bot != bot_mode:
-            st.session_state.current_bot = bot_mode
-            st.session_state.messages = []
+    .card-icon {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
 
-        if "messages" not in st.session_state:
-            st.session_state.messages = []
-        if "leads" not in st.session_state:
-            st.session_state.leads = []
+    .card-title {
+        font-size: 22px;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 12px;
+    }
 
-        for message in st.session_state.messages:
-            st.chat_message(message["role"]).write(message["content"])
+    .card-desc {
+        font-size: 15px;
+        color: #64748b;
+        line-height: 1.6;
+        margin: 0;
+    }
 
-        user_input = st.chat_input(f"Type a message to test the {bot_mode} assistant...")
+    /* Elegant Structural Framework Section Break Blocks */
+    .glass-showcase {
+        background-color: #f8fafc;
+        border-left: 5px solid #2563eb;
+        padding: 30px;
+        border-radius: 16px;
+        margin-top: 40px;
+        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-        if user_input:
-            st.chat_message("user").write(user_input)
-            st.session_state.messages.append({"role": "user", "content": user_input})
-            
-            response = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=user_input,
-                config=types.GenerateContentConfig(system_instruction=system_instruction),
-            )
-            ai_reply = response.text
-            
-            st.chat_message("assistant").write(ai_reply)
-            st.session_state.messages.append({"role": "assistant", "content": ai_reply})
+# --- NAVIGATION SIDEBAR AND CO-FOUNDER CORE IDENTITY ---
+try:
+    st.sidebar.image("logo.png", width=190)
+except:
+    st.sidebar.image("https://icons8.com", width=80)
+st.sidebar.title("CoreAI Solutions")
+st.sidebar.caption("🤖 Enterprise Automation Hub")
 
-    except Exception as e:
-        st.error(f"❌ Connection Error: {e}")
-else:
-    st.warning("⚠️ Cloud connection error. Please refresh the page parameters.")
+# --- EXECUTE ANIMATED VIEWPORT WRAPPER ---
+st.markdown("<div class='animated-viewport'>", unsafe_allow_html=True)
+
+st.markdown("<div class='enterprise-title'>COREAI SOLUTIONS</div>", unsafe_allow_html=True)
+st.markdown("<div class='enterprise-subtitle'>We engineer autonomous, hyper-realistic conversational brains that orchestrate customer support networks and capture global enterprise revenue 24/7.</div>", unsafe_allow_html=True)
+
+# Cinematic tech banner asset
+st.image("https://unsplash.com", use_container_width=True)
+
+st.markdown("<h2 style='color: #0f172a; font-weight:600; margin-top:40px; margin-bottom:20px;'>🚀 Systems Architecture & Frameworks</h2>", unsafe_allow_html=True)
+
+# 3-Column multi-variant layout with responsive floating animation nodes
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""<div class='cyber-card'>
+    <div class='card-icon'>💬</div>
+    <div class='card-title'>Conversational Intelligence</div>
+    <div class='card-desc'>Instantly maps out and processes intricate consumer service inquiries regarding rate structures, policies, and schedules with absolute human accuracy.</div>
+    </div>""", unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""<div class='cyber-card'>
+    <div class='card-icon'>📈 Predictive Lead Engines</div>
+    <div class='card-title'>Autonomous Data Harvesting</div>
+    <div class='card-desc'>Isolates booking and conversion behaviors in real time to capture consumer contact parameters (Names, Emails, and Phone Numbers) directly into administrative grids.</div>
+    </div>""", unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""<div class='cyber-card'>
+    <div class='card-icon'>💸 Zero Maintenance Nodes</div>
+    <div class='card-title'>Cloud-Optimized Pipelines</div>
+    <div class='card-desc'>Engineered securely over serverless cloud microstructures, keeping maintenance bills and resource management operational costs at absolute zero.</div>
+    </div>""", unsafe_allow_html=True)
+
+st.markdown("<h2 style='color: #0f172a; font-weight:600; margin-top:30px;'>🌟 Global Strategic Partnerships</h2>", unsafe_allow_html=True)
+st.markdown("""
+<div class='glass-showcase'>
+    <p style='font-size: 16px; color: #334155; line-height: 1.8; margin: 0;'>
+    Modern enterprise networks suffer severe transactional leakage due to delayed communication matrices outside operational boundaries. 
+    <b>CoreAI Solutions</b> bridges this structural gap by embedding production-ready conversational agents trained under your strict industry parameters. 
+    We transform passive promotional web interfaces into active transaction nodes. Navigate to our interactive showrooms in the sidebar panel to audit our live infrastructure.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("</div>", unsafe_allow_html=True) # Terminate animated wrapper layout node
