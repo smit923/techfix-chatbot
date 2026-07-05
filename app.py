@@ -11,7 +11,7 @@ st.markdown("""
     .feature-box { padding: 25px; border-radius: 12px; background-color: #F7FAFC; border-left: 6px solid #2B6CB0; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
     .section-bar { font-size: 26px; font-weight: bold; color: #2B6CB0; margin-top: 35px; margin-bottom: 20px; border-bottom: 3px solid #E2E8F0; padding-bottom: 8px; }
     </style>
-""", unsafe_style_html=True)
+""", unsafe_allow_html=True)
 
 # --- SIDEBAR IDENTIFIER ---
 try:
