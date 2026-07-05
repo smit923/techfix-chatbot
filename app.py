@@ -1,9 +1,15 @@
 import streamlit as st
 
-# Setup Master Navigation - Clean text paths prevent all server crashing bugs!
+# Setup Plain Text Master Navigation - Fixes the file emoji reading error completely!
 home_page = st.Page("app.py", title="🏠 Home & Services", default=True)
 demo_page = st.Page("pages/1_Live_Demos.py", title="🤖 Live Showroom Demos")
 lead_page = st.Page("pages/2_Lead_Center.py", title="📥 Lead Management Panel")
+
+# Force check our hidden cloud API key so the text box vanishes!
+if "GEMINI_API_KEY" in st.secrets:
+    api_key = st.secrets["GEMINI_API_KEY"]
+else:
+    api_key = st.sidebar.text_input("Developer Authentication Key", type="password")
 
 # Render the sidebar navigation index dynamically
 pg = st.navigation([home_page, demo_page, lead_page], position="sidebar")
