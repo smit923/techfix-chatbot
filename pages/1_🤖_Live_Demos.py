@@ -5,7 +5,7 @@ from google.genai import types
 st.set_page_config(page_title="CoreAI Solutions | Live Demos", layout="wide")
 
 st.markdown("# 🛠️ Interactive AI Showroom")
-st.markdown("### Switch between target industry pipelines to test our software capabilities.")
+st.markdown("### Select an industry below to test our custom virtual business assistants in real time.")
 st.write("---")
 
 if "GEMINI_API_KEY" in st.secrets:
@@ -18,11 +18,20 @@ if api_key:
         client = genai.Client(api_key=api_key)
 
         bot_mode = st.selectbox(
-            "Select an industry model to deploy in real time:",
-            ["Grand Plaza Hotel (USA Hospitality)", "TechFix Repairs (Mobile/Laptop Hub)", "Elite Fitness Gym Center", "Sparkle Dental Care Clinic"]
+            "Choose a business assistant to chat with:",
+            ["Best Western Plus (Ardmore, Oklahoma USA)", "Grand Plaza Hotel (USA Hospitality)", "TechFix Repairs (Mobile/Laptop Hub)", "Elite Fitness Gym Center", "Sparkle Dental Care Clinic"]
         )
 
-        if bot_mode == "Grand Plaza Hotel (USA Hospitality)":
+        if bot_mode == "Best Western Plus (Ardmore, Oklahoma USA)":
+            system_instruction = (
+                "You are an expert, elite virtual front desk concierge for the Best Western Plus Ardmore Inn & Suites in Oklahoma, USA. "
+                "We provide clean, comfortable rooms, free high-speed Wi-Fi, free hot breakfast, a modern fitness center, and a beautiful indoor pool with a hot tub. "
+                "Check-in time is exactly 3:00 PM and check-out time is 12:00 PM. We are a 100% smoke-free and pet-free property. "
+                "Always maintain an incredibly polite, welcoming, helpful, and highly professional American hospitality tone. "
+                "CRITICAL RULE: Whenever a guest wants to book a room, check room availability, or plan a stay, "
+                "you MUST politely ask for their Full Name, Phone Number, and Email Address to process their reservation log."
+            )
+        elif bot_mode == "Grand Plaza Hotel (USA Hospitality)":
             system_instruction = (
                 "You are an expert, world-class virtual concierge for The Grand Plaza Hotel in Miami, USA. "
                 "Standard rooms start at $149 per night, and luxury suites are $299 per night. Check-in is 3 PM, check-out is 11 AM. "
@@ -67,7 +76,7 @@ if api_key:
         for message in st.session_state.messages:
             st.chat_message(message["role"]).write(message["content"])
 
-        user_input = st.chat_input(f"Send a test simulation message to our {bot_mode}...")
+        user_input = st.chat_input(f"Type a message to test the {bot_mode} assistant...")
 
         if user_input:
             st.chat_message("user").write(user_input)
@@ -86,5 +95,4 @@ if api_key:
     except Exception as e:
         st.error(f"❌ Connection Error: {e}")
 else:
-    st.warning("⚠️ Enter your Gemini Developer Key in the sidebar to fire up the chat channels.")
-
+    st.warning("⚠️ Cloud connection error. Please refresh the page parameters.")
