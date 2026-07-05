@@ -1,10 +1,9 @@
 import streamlit as st
 
-# Setup Master Navigation - Matches your exact GitHub filenames perfectly!
+# Setup Master Navigation - Clean text paths prevent all server crashing bugs!
 home_page = st.Page("app.py", title="🏠 Home & Services", default=True)
 demo_page = st.Page("pages/1_Live_Demos.py", title="🤖 Live Showroom Demos")
-# Fixed this path line to match your exact GitHub filename with the tray emoji!
-lead_page = st.Page("pages/2_📥_Lead_Center.py", title="📥 Lead Management Panel")
+lead_page = st.Page("pages/2_Lead_Center.py", title="📥 Lead Management Panel")
 
 # Render the sidebar navigation index dynamically
 pg = st.navigation([home_page, demo_page, lead_page], position="sidebar")
