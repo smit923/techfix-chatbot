@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Force wide page layout structure for an enterprise dashboard experience
-st.set_page_config(page_title="CoreAI Solutions | Autonomous Enterprise Systems", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="CoreAI Solutions | Premium Hospitality Automation", layout="wide", initial_sidebar_state="expanded")
 
 # --- HIGH-END DIGITAL BRAND ARCHITECTURE & KEYFRAME ANIMATIONS ---
 st.markdown("""
@@ -58,7 +58,7 @@ st.markdown("""
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
-    /* Smooth Interactive Transform Hook: Elevate, Shadow Glow, Accent Highlight */
+    /* Smooth Interactive Transform Hook */
     .cyber-card:hover {
         transform: translateY(-10px) scale(1.01);
         box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.18);
@@ -96,56 +96,56 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- NAVIGATION SIDEBAR AND CO-FOUNDER CORE IDENTITY ---
+# --- NAVIGATION SIDEBAR ---
 try:
     st.sidebar.image("logo.png", width=190)
 except:
     st.sidebar.image("https://icons8.com", width=80)
 st.sidebar.title("CoreAI Solutions")
-st.sidebar.caption("🤖 Enterprise Automation Hub")
+st.sidebar.caption("🛎️ Premium Hospitality AI")
 
 # --- EXECUTE ANIMATED VIEWPORT WRAPPER ---
 st.markdown("<div class='animated-viewport'>", unsafe_allow_html=True)
 
 st.markdown("<div class='enterprise-title'>COREAI SOLUTIONS</div>", unsafe_allow_html=True)
-st.markdown("<div class='enterprise-subtitle'>We engineer autonomous, hyper-realistic conversational brains that orchestrate customer support networks and capture global enterprise revenue 24/7.</div>", unsafe_allow_html=True)
+st.markdown("<div class='enterprise-subtitle'>We build intelligent 24/7 virtual receptionists for luxury hotels to automate guest support, manage bookings, and increase room sales.</div>", unsafe_allow_html=True)
 
-# Cinematic tech banner asset
+# Beautiful cinematic hotel reception lobby image instead of generic abstract coding art
 st.image("https://unsplash.com", use_container_width=True)
 
-st.markdown("<h2 style='color: #0f172a; font-weight:600; margin-top:40px; margin-bottom:20px;'>🚀 Systems Architecture & Frameworks</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: #0f172a; font-weight:600; margin-top:40px; margin-bottom:20px;'>🛎️ Smart Hospitality Solutions</h2>", unsafe_allow_html=True)
 
-# 3-Column multi-variant layout with responsive floating animation nodes
+# 3-Column hotel layout with responsive floating animation nodes
 col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("""<div class='cyber-card'>
     <div class='card-icon'>💬</div>
-    <div class='card-title'>Conversational Intelligence</div>
-    <div class='card-desc'>Instantly maps out and processes intricate consumer service inquiries regarding rate structures, policies, and schedules with absolute human accuracy.</div>
+    <div class='card-title'>Instant Guest Support</div>
+    <div class='card-desc'>Instantly handles recurring guest questions regarding check-in times, parking rules, property amenities, and hotel policies with absolute friendly accuracy.</div>
     </div>""", unsafe_allow_html=True)
 
 with col2:
     st.markdown("""<div class='cyber-card'>
-    <div class='card-icon'>📈 Predictive Lead Engines</div>
-    <div class='card-title'>Autonomous Data Harvesting</div>
-    <div class='card-desc'>Isolates booking and conversion behaviors in real time to capture consumer contact parameters (Names, Emails, and Phone Numbers) directly into administrative grids.</div>
+    <div class='card-icon'>🏨 Direct Room Bookings</div>
+    <div class='card-title'>Automated Lead Capture</div>
+    <div class='card-desc'>Intelligently guides website visitors through room packages and securely captures guest contact details (Names, Emails, and Phone Numbers) to secure direct bookings.</div>
     </div>""", unsafe_allow_html=True)
 
 with col3:
     st.markdown("""<div class='cyber-card'>
-    <div class='card-icon'>💸 Zero Maintenance Nodes</div>
-    <div class='card-title'>Cloud-Optimized Pipelines</div>
-    <div class='card-desc'>Engineered securely over serverless cloud microstructures, keeping maintenance bills and resource management operational costs at absolute zero.</div>
+    <div class='card-icon'>💰 Zero Monthly Software Bills</div>
+    <div class='card-title'>Zero Server Overhead</div>
+    <div class='card-desc'>Our custom-built frameworks run entirely on highly optimized, cloud-native systems, ensuring your hotel pays exactly zero rupees in monthly upkeep costs.</div>
     </div>""", unsafe_allow_html=True)
 
-st.markdown("<h2 style='color: #0f172a; font-weight:600; margin-top:30px;'>🌟 Global Strategic Partnerships</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color: #0f172a; font-weight:600; margin-top:30px;'>🌟 Elevate Your Guest Experience</h2>", unsafe_allow_html=True)
 st.markdown("""
 <div class='glass-showcase'>
     <p style='font-size: 16px; color: #334155; line-height: 1.8; margin: 0;'>
-    Modern enterprise networks suffer severe transactional leakage due to delayed communication matrices outside operational boundaries. 
-    <b>CoreAI Solutions</b> bridges this structural gap by embedding production-ready conversational agents trained under your strict industry parameters. 
-    We transform passive promotional web interfaces into active transaction nodes. Navigate to our interactive showrooms in the sidebar panel to audit our live infrastructure.
+    Modern hotels lose thousands of dollars in room sales when online guests leave the website because of slow email responses or busy front desk phone lines. 
+    <b>CoreAI Solutions</b> solves this problem by embedding a custom, highly trained virtual assistant directly onto your website. 
+    We turn casual website browsing into guaranteed direct direct guest reservations. Navigate to our interactive showrooms in the sidebar panel to test our live hotel assistants right now.
     </p>
 </div>
 """, unsafe_allow_html=True)
