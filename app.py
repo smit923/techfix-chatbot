@@ -1,9 +1,9 @@
 import streamlit as st
 
-# Setup Plain Text Master Navigation - Fixes the file emoji reading error completely!
+# Setup Navigation with Emoji Paths - Matches your GitHub files exactly!
 home_page = st.Page("app.py", title="🏠 Home & Services", default=True)
-demo_page = st.Page("pages/1_Live_Demos.py", title="🤖 Live Showroom Demos")
-lead_page = st.Page("pages/2_Lead_Center.py", title="📥 Lead Management Panel")
+demo_page = st.Page("pages/1_🤖_Live_Demos.py", title="🤖 Live Showroom Demos")
+lead_page = st.Page("pages/2_📥_Lead_Center.py", title="📥 Lead Management Panel")
 
 # Render the sidebar navigation index dynamically
 pg = st.navigation([home_page, demo_page, lead_page], position="sidebar")
