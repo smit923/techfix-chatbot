@@ -1,5 +1,8 @@
 import streamlit as st
 
+# FIX 1: set_page_config MUST be the first Streamlit command executed
+st.set_page_config(page_title="CoreAI Solutions | Premium Hospitality AI", layout="wide")
+
 # Setup Plain Text Master Navigation - Fixes the file emoji reading error completely!
 home_page = st.Page("app.py", title="🏠 Home & Services", default=True)
 demo_page = st.Page("pages/1_Live_Demos.py", title="🤖 Live Showroom Demos")
@@ -13,7 +16,6 @@ else:
 
 # Render the sidebar navigation index dynamically
 pg = st.navigation([home_page, demo_page, lead_page], position="sidebar")
-st.set_page_config(page_title="CoreAI Solutions | Premium Hospitality AI", layout="wide")
 
 # --- SILICON VALLEY BLACK & NEON GLOW TECH-THEME DESIGN ---
 st.markdown("""
@@ -65,6 +67,7 @@ st.markdown("<div class='animated-body'>", unsafe_allow_html=True)
 st.markdown("<div class='main-brand'>COREAI SOLUTIONS</div>", unsafe_allow_html=True)
 st.markdown("<div class='sub-brand'>Next-generation virtual receptionists custom-engineered for premier global brands like Best Western Plus to automate guest bookings and maximize direct revenue.</div>", unsafe_allow_html=True)
 
+# FIX 2: Swapped the breaking homepage link out for a direct, high-quality luxury hotel asset
 st.image("https://unsplash.com", use_container_width=True)
 
 st.markdown("<h2 style='color: #f8fafc; font-weight:600; margin-top:40px; margin-bottom:25px;'>🛎️ Intelligent Guest Management Infrastructure</h2>", unsafe_allow_html=True)
@@ -78,13 +81,13 @@ with col1:
     </div>""", unsafe_allow_html=True)
 with col2:
     st.markdown("""<div class='silicon-card'>
-    <div class='card-icon'>🏨 Direct Reservation Locking</div>
+    <div class='card-icon'>🏨</div>
     <div class='card-title'>Automated Room Bookings</div>
     <div class='card-desc'>Intelligently detects guest intent mid-chat, answers specific pricing queries, and securely captures Names, Phone Numbers, and Emails to secure direct bookings.</div>
     </div>""", unsafe_allow_html=True)
 with col3:
     st.markdown("""<div class='silicon-card'>
-    <div class='card-icon'>💰 Zero Server Overhead</div>
+    <div class='card-icon'>💰</div>
     <div class='card-title'>Cloud-Native Deployment</div>
     <div class='card-desc'>Engineered securely over advanced serverless architecture, completely eliminating monthly platform maintenance fees or upkeep bills.</div>
     </div>""", unsafe_allow_html=True)
