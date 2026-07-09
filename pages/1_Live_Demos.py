@@ -2,7 +2,7 @@ import streamlit as st
 from google import genai
 from google.genai import types
 
-st.set_page_config(page_title="CoreAI Solutions | Live Demos", layout="wide")
+# FIX 1: Removed st.set_page_config to completely prevent multi-page routing layout crashes!
 
 st.markdown("# 🛠️ Interactive AI Showroom")
 st.markdown("### Select an industry below to test our custom virtual business assistants in real time.")
@@ -64,6 +64,7 @@ if api_key:
                 "you MUST ask for their Full Name and Phone Number to look up open dental slots."
             )
 
+        # Clear historical states correctly if user selects a different bot profile
         if "current_bot" not in st.session_state or st.session_state.current_bot != bot_mode:
             st.session_state.current_bot = bot_mode
             st.session_state.messages = []
@@ -73,6 +74,7 @@ if api_key:
         if "leads" not in st.session_state:
             st.session_state.leads = []
 
+        # Render message loops from persistent storage safely
         for message in st.session_state.messages:
             st.chat_message(message["role"]).write(message["content"])
 
@@ -82,10 +84,26 @@ if api_key:
             st.chat_message("user").write(user_input)
             st.session_state.messages.append({"role": "user", "content": user_input})
             
+            # FIX 2: Translating persistent history arrays into structured Content types for Gemini conversational loop
+            formatted_contents = []
+            for msg in st.session_state.messages:
+                # Map Streamlit roles cleanly into correct SDK expectations ('user' and 'model')
+                sdk_role = "user" if msg["role"] == "user" else "model"
+                formatted_contents.append(
+                    types.Content(
+                        role=sdk_role,
+                        parts=[types.Part.from_text(text=msg["content"])]
+                    )
+                )
+
+            # Generate fully contextual inference response
             response = client.models.generate_content(
                 model="gemini-2.5-flash",
-                contents=user_input,
-                config=types.GenerateContentConfig(system_instruction=system_instruction),
+                contents=formatted_contents,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction,
+                    temperature=0.3
+                ),
             )
             ai_reply = response.text
             
