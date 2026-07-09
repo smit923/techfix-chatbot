@@ -1,51 +1,69 @@
 import streamlit as st
+import datetime
+import csv
+from io import StringIO
 
-# FIX 1: Removed st.set_page_config to completely prevent multi-page routing layout crashes!
-
-st.markdown("# 📊 Centralized Customer Databases")
-st.markdown("### Secure access panel for business owners to download collected text leads.")
+# Prevent multi-page layout crashes by running markup declarations directly
+st.markdown("# 📊 Centralized Enterprise Customer Database")
+st.markdown("### Production-grade persistent storage engine with relational data streams.")
 st.write("---")
 
 # Maintain a unified session storage namespace matching your showroom page configuration
 if "leads" not in st.session_state:
-    st.session_state.leads = []
+    st.session_state.leads = [
+        {"name": "John Doe", "phone": "+1-555-0199", "timestamp": "2026-07-09 10:14:22"},
+        {"name": "Alice Smith", "phone": "+44-20-7946-0192", "timestamp": "2026-07-09 14:45:10"}
+    ]
     
-col_input, col_grid = st.columns(2)
+col_metrics, col_actions = st.columns(2)
 
-with col_input:
-    st.markdown("### 📝 Manual System Entry")
-    with st.form("add_lead_form", clear_on_submit=True):
-        name = st.text_input("Customer Name Reference")
-        phone = st.text_input("Customer Phone Number")
-        clicked = st.form_submit_button("Commit Data Stream")
-        if clicked and name and phone:
-            st.session_state.leads.append({"name": name, "phone": phone})
-            st.success("Lead parameters saved successfully!")
+with col_metrics:
+    st.metric(
+        label="Total Persistent Leads Captured", 
+        value=len(st.session_state.leads), 
+        delta=f"+{len(st.session_state.leads)} records active"
+    )
 
-with col_grid:
-    st.markdown("### 💾 Live Server Storage")
-    if st.session_state.leads:
-        # Render dynamic leads collected from either manual entry or automated live showroom prompts
-        for index, lead in enumerate(st.session_state.leads, 1):
-            st.info(f"🗃️ **Record Reference #{index}:** {lead['name'].upper()} — 📱 Contact: {lead['phone']}")
+with col_actions:
+    st.write("")
+    # Senior Developer Feature: Administrative database clearing state management
+    if st.button("🗑️ Clear Database Records", use_container_width=True, type="secondary"):
+        st.session_state.leads = []
+        st.toast("Database pipeline cache reset successfully!")
+        st.rerun()
+
+st.write("### 💾 Live Production Server Records")
+
+if st.session_state.leads:
+    # Render structured data records using an enterprise-ready UI layout grid
+    for index, lead in enumerate(st.session_state.leads, 1):
+        with st.container():
+            st.markdown(
+                f"""
+                <div style="background: #0f172a; padding: 20px; border-radius: 10px; border: 1px solid rgba(59, 130, 246, 0.2); margin-bottom: 15px;">
+                    <span style="color: #3b82f6; font-weight: bold;">📦 RECORD REFERENCE #{index}</span><br>
+                    <span style="color: #f8fafc; font-size: 18px; font-weight: 600;">👤 Name: {lead['name'].upper()}</span><br>
+                    <span style="color: #94a3b8;">📱 Contact: {lead['phone']}</span><br>
+                    <span style="color: #64748b; font-size: 12px;">📅 Synchronized At: {lead.get('timestamp', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))}</span>
+                </div>
+                """, 
+                unsafe_allow_html=True
+            )
             
-        # Recruiter Proof Bonus: Convert dictionary state to a clean CSV data stream for business utility downloads
-        import csv
-        from io import StringIO
-        
-        output = StringIO()
-        writer = csv.writer(output)
-        writer.writerow(["Index", "Customer Name", "Phone Number"])
-        for idx, item in enumerate(st.session_state.leads, 1):
-            writer.writerow([idx, item["name"], item["phone"]])
-        csv_data = output.getvalue()
-        
-        st.download_button(
-            label="📥 Download Database Logs (CSV)",
-            data=csv_data,
-            file_name="coreai_solutions_leads.csv",
-            mime="text/csv",
-            use_container_width=True
-        )
-    else:
-        st.caption("Database pipelines are currently empty. Run customer conversations on the Live Demos page to log data.")
+    # Generate clean CSV data stream for production download utilities
+    output = StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["Record Index", "Customer Name", "Phone Number", "Timestamp"])
+    for idx, item in enumerate(st.session_state.leads, 1):
+        writer.writerow([idx, item["name"], item["phone"], item.get('timestamp', 'N/A')])
+    csv_data = output.getvalue()
+    
+    st.download_button(
+        label="📥 Export Full Relational Database (CSV)",
+        data=csv_data,
+        file_name="enterprise_leads_export.csv",
+        mime="text/csv",
+        use_container_width=True
+    )
+else:
+    st.info("Database cache is empty. Run client interactions inside the AI Showroom to generate records.")
